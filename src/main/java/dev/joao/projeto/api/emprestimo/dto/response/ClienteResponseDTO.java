@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ClienteResponseDTO {
-
+    private String cpf;
     private String nome;
     private String telefone;
     private Endereco endereco;
@@ -23,7 +23,8 @@ public class ClienteResponseDTO {
 
     }
 
-    public ClienteResponseDTO(String nome, String telefone, Endereco endereco, BigDecimal rendimentoMensal, List<Emprestimo> emprestimos) {
+    public ClienteResponseDTO(String cpf, String nome, String telefone, Endereco endereco, BigDecimal rendimentoMensal, List<Emprestimo> emprestimos) {
+        this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
@@ -32,6 +33,7 @@ public class ClienteResponseDTO {
     }
 
     public ClienteResponseDTO(Cliente cliente) {
+        this.cpf = cliente.getCpf();
         this.nome = cliente.getNome();
         this.telefone = cliente.getTelefone();
         this.endereco = cliente.getEndereco();

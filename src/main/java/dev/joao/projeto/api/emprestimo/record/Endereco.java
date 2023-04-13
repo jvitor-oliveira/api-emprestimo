@@ -6,11 +6,9 @@ import javax.validation.constraints.NotBlank;
 @Embeddable
 public class Endereco {
     @NotBlank(message = "LOGRADOURO NULL/VAZIO")
-    private String logradouro;
+    private String rua;
     @NotBlank(message = "NUMERO NULL/VAZIO")
     private String numero;
-    @NotBlank(message = "BAIRRO NULL/VAZIO")
-    private String bairro;
     @NotBlank(message = "CEP NULL/VAZIO")
     private String cep;
 
@@ -19,18 +17,17 @@ public class Endereco {
     }
 
     public Endereco(Endereco endereco){
-        this.logradouro = endereco.getLogradouro();
+        this.rua = endereco.getRua();
         this.numero = endereco.getNumero();
-        this.bairro = endereco.getBairro();
         this.cep = endereco.getCep();
     }
 
-    public String getLogradouro() {
-        return logradouro;
+    public String getRua() {
+        return rua;
     }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+    public void setRua(String logradouro) {
+        this.rua = logradouro;
     }
 
     public String getNumero() {
@@ -39,14 +36,6 @@ public class Endereco {
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
     }
 
     public String getCep() {

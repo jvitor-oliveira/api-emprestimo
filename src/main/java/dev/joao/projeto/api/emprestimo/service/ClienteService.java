@@ -19,7 +19,7 @@ public class ClienteService {
     }
 
     public Cliente buscarByCpf(String cpf) {
-        return repository.findById(cpf).orElse(null);
+        return repository.findById(cpf).get();
     }
 
     public List<Cliente> buscarTodosClientes() {

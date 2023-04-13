@@ -11,33 +11,34 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/clientes")
 public class ClienteController {
 
     @Autowired
     private ClienteService service;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/clientes")
-    public void cadastrarCliente(@RequestBody @Valid ClienteRequestDTO clienteDTO) {
-        service.cadastrarCliente(clienteDTO.build());
+    @PostMapping
+    public void cadastrarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
+        service.cadastrarCliente(clienteRequestDTO.build());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/clientes/{cpf}")
+    @GetMapping("/{cpf}")
     public ClienteResponseDTO buscarByCpf(@PathVariable String cpf){
         return new ClienteResponseDTO(service.buscarByCpf(cpf));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/clientes")
+    @GetMapping
     public List<ClienteResponseDTO> buscarTodosClientes(){
         List<Cliente> clientes = service.buscarTodosClientes();
         return ClienteResponseDTO.convert(clientes);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/clientes/{cpf}")
+    @DeleteMapping("/{cpf}")
     public void deletarCliente(@PathVariable String cpf){
         service.deletarCliente(cpf);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/clientes/{cpf}")
+    @PutMapping("/{cpf}")
     public void atualizarCliente(@RequestBody ClienteRequestDTO novosDadosCliente, @PathVariable String cpf){
         service.atualizarCliente(novosDadosCliente.build(), cpf);
     }

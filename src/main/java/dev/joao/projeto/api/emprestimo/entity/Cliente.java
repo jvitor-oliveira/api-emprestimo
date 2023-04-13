@@ -101,10 +101,10 @@ public class Cliente {
             novosDadosCliente.setTelefone(cliente.getTelefone());
         }
         Endereco endereco = new Endereco();
-        if (novosDadosCliente.getEndereco().getLogradouro() == null || novosDadosCliente.getEndereco().getLogradouro().isEmpty()) {
-            endereco.setLogradouro(cliente.getEndereco().getLogradouro());
+        if (novosDadosCliente.getEndereco().getRua() == null || novosDadosCliente.getEndereco().getRua().isEmpty()) {
+            endereco.setRua(cliente.getEndereco().getRua());
         }else{
-            endereco.setLogradouro(novosDadosCliente.getEndereco().getLogradouro());
+            endereco.setRua(novosDadosCliente.getEndereco().getRua());
         }
         if (novosDadosCliente.getEndereco().getNumero() == null || novosDadosCliente.getEndereco().getNumero().isEmpty()) {
             endereco.setNumero(cliente.getEndereco().getNumero());
@@ -115,11 +115,6 @@ public class Cliente {
             endereco.setCep(cliente.getEndereco().getCep());
         }else{
             endereco.setCep(novosDadosCliente.getEndereco().getCep());
-        }
-        if (novosDadosCliente.getEndereco().getBairro() == null || novosDadosCliente.getEndereco().getBairro().isEmpty()) {
-            endereco.setBairro(cliente.getEndereco().getBairro());
-        }else{
-            endereco.setBairro(novosDadosCliente.getEndereco().getBairro());
         }
         novosDadosCliente.setEndereco(endereco);
         if (novosDadosCliente.getRendimentoMensal() == null) {
