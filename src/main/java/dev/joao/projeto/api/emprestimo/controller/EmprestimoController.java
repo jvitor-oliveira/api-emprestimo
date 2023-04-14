@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
+@RequestMapping("/clientes")
 public class EmprestimoController {
 
     @Autowired
@@ -24,7 +25,7 @@ public class EmprestimoController {
     @Autowired
     private ClienteController clienteController;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/clientes/{cpf}/emprestimos")
+    @PostMapping("/{cpf}/emprestimos")
     public void cadastrarEmprestimo(@RequestBody @Valid EmprestimoRequestDTO emprestimo, @PathVariable String cpf) {
         ClienteResponseDTO cliente = clienteController.buscarByCpf(cpf);
 
@@ -62,20 +63,20 @@ public class EmprestimoController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/clientes/{cpf}/emprestimos")
+    @GetMapping ("/{cpf}/emprestimos")
     public List<EmprestimoResponseDTO> buscarEmprestimosByCpf(@PathVariable String cpf){
         List<Emprestimo> emprestimos = service.buscarEmprestimosByCpf(cpf);
         return EmprestimoResponseDTO.convert(emprestimos);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/clientes/{cpf}/emprestimos/{id}")
+    @GetMapping ("/{cpf}/emprestimos/{id}")
     public List<EmprestimoResponseDTO> buscarEmprestimosById(@PathVariable String cpf, @PathVariable Integer id){
         List<Emprestimo> emprestimos = service.buscarEmprestimosById(cpf, id);
         return EmprestimoResponseDTO.convert(emprestimos);
     }
 
     @Transactional
-    @RequestMapping(method = RequestMethod.DELETE, value = "/clientes/{cpf}/emprestimos/{id}")
+    @DeleteMapping("/{cpf}/emprestimos/{id}")
     public void deletarEmprestimosById(@PathVariable String cpf, @PathVariable Integer id){
         service.deletarEmprestimosById(cpf, id);
     }
